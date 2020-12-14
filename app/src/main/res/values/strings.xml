@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Demo</string>
+    <string name="retry">retry</string>
+    <string name="internet_connection_error">Internet connection error!</string>
+    <string name="title_activity_image_detail">ImageDetailActivity</string>
+    <string name="set_as_default">Set as default</string>
+
+    <string name="google_maps_api_key">AIzaSyCZuhBt9c7npoet9uAyBr0HMmsOHXCSoh8</string>
+
+    <string name="weather_value">%1s (%2s)</string>
+    <string name="time_value">Time : %s</string>
+    <string name="temperature_value"><b>Temp. :</b> %.2f Kelvin</string>
+    <string name="humidity_value"><b>Humidity :</b> %d %%</string>
+    <string name="wind_value"><b>Wind :</b> %.2f meter/sec</string>
+    <string name="rain_value"><b>Rain :</b> %.2f mm</string>
+
+    <string name="max_temp">Max Temp.</string>
+    <string name="min_temp">Min Temp.</string>
+</resources>

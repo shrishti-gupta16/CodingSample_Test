@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="androidx.core.content.ContextCompat" />
+
+        <variable
+            name="viewModel"
+            type="com.example.codingsample.ui.main.LocationViewModel" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/clParent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:visibility="visible">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_gravity="bottom"
+            app:srcCompat="@drawable/citi_list_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white_bg_color"
+            android:elevation="@dimen/match_constraints"
+            android:shadowColor="@color/white_bg_color"
+            android:stateListAnimator="@null"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsingToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_primary"
+                app:contentScrim="@color/white_bg_color"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                app:scrimAnimationDuration="200"
+                app:titleEnabled="false">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTitleScreen"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_parent"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:maxLines="1"
+                    android:text="Cities"
+                    android:textColor="@color/white_bg_color"
+                    android:textSize="@dimen/text_size_title" />
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etSearch"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_parent"
+                android:background="@drawable/rectangle_border_grey"
+                android:hint="Search City"
+                android:imeOptions="actionSearch"
+                android:inputType="textCapWords"
+                android:padding="@dimen/margin_parent"
+                android:text="@={viewModel.searchQuery}"
+                android:singleLine="true"
+                tools:ignore="UnusedAttribute" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clParentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{viewModel.locationListLiveData.empty ? View.GONE: View.VISIBLE}"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvLocation"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/match_constraints"
+                android:background="@android:color/white"
+                app:items="@{viewModel.locationListLiveData}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/location_item" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNoCity"
+            style="@style/TextAppearance.AppCompat.Headline"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="No City Added"
+            android:visibility="@{viewModel.locationListLiveData.empty ? View.VISIBLE: View.GONE}" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/efabAddMapCity"
+            style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_margin="@dimen/margin_parent"
+            android:text="Map"
+            android:textColor="@color/white_bg_color"
+            android:textAllCaps="false"
+            app:iconTint="@color/white_bg_color"
+            app:icon="@drawable/ic_add_white" />
+
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/efabAddManualCity"
+            style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/margin_parent"
+            android:text="Manual"
+            android:textColor="@color/white_bg_color"
+            android:textAllCaps="false"
+            app:iconTint="@color/white_bg_color"
+            app:icon="@drawable/ic_add_white" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
+

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.example.codingsample.utils.Utils" />
+
+        <variable
+            name="item"
+            type="com.example.codingsample.data.WeatherForecast" />
+
+    </data>
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.MaterialComponents.CardView"
+        android:id="@+id/card_view"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="20dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_parent">
+            <TextView
+                android:id="@+id/weather_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{String.format(@string/weather_value, item.weather.get(0).name, item.weather.get(0).description)}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/date_time_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:formatDate="@{item.dateValue}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/weather_text_view"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/temp_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_parent"
+                android:text="@{String.format(@string/temperature_value, item.temperature.temp)}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/date_time_text_view"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+             <TextView
+                 android:id="@+id/humidity_text_view"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="@dimen/margin_parent"
+                 android:text="@{String.format(@string/humidity_value, item.temperature.humidity)}"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toBottomOf="@+id/temp_text_view"
+                 app:layout_constraintEnd_toEndOf="parent"/>
+
+             <TextView
+                 android:id="@+id/rain_text_view"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="@dimen/margin_parent"
+                 android:text="@{String.format(@string/rain_value, item.rain.value)}"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toBottomOf="@+id/humidity_text_view"
+                 app:layout_constraintEnd_toEndOf="parent"/>
+
+             <TextView
+                 android:id="@+id/wind_text_view"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="@dimen/margin_parent"
+                 android:text="@{String.format(@string/wind_value, item.wind.speed)}"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toBottomOf="@+id/rain_text_view"
+                 app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

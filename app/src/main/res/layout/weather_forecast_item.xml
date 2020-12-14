@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.widget.CompoundButton" />
+
+        <import type="com.example.codingsample.utils.Utils" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="item"
+            type="com.example.codingsample.data.ForecastItem" />
+
+    </data>
+
+        <LinearLayout
+            android:layout_width="120dp"
+            android:layout_height="200dp"
+            android:layout_marginEnd="@dimen/margin_extra"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/margin_parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_view"
+                style="@style/Widget.MaterialComponents.CardView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:cardUseCompatPadding="true"
+                android:layout_weight="1"
+                app:cardCornerRadius="20dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/day_name_text_view"
+                        style="@style/TextAppearance.AppCompat.Body2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@{item.date}"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/weather_image_view"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@drawable/weather"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/temp_text_view"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layoutDirection="ltr"
+                        android:text="@{String.valueOf(item.weather.get(0).temperature.temp)}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="@string/min_temp" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/min_temp_text_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="@{String.valueOf(item.weather.get(0).temperature.tempMin)}"/>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="@string/max_temp" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/max_temp_text_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="@{String.valueOf(item.weather.get(0).temperature.tempMax)}"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:id="@+id/shadow_view"
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
+        </LinearLayout>
+</layout>
